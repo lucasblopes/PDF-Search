@@ -1,0 +1,83 @@
+configuration {
+	modi: "drun,window,run";
+	font: "Hack 11";
+	display-drun: "";
+	sidebar-mode: false;
+}
+
+@theme "/dev/null"
+
+* {
+	bg:				#010912;
+	fg:				#d5bd96;
+	selected: #ffffff;
+	button:	  #62576D;
+
+	background-color: @bg;
+	text-color: @fg;
+}
+
+window {
+	transparency: "real";
+	border-radius: 0px;
+	width: 250px;
+	y-offset: 0px;
+	padding: 0px;
+    margin: 0px;
+	location: 0;
+}
+
+prompt { 
+    enabled: false;
+    format: "<span foreground='@fg'>${msg}</span>";
+}
+
+entry {
+	expand: true;
+	padding: 3px 10px 3px 10px;
+	background-color: @bg;
+    placeholder-color: @fg;
+}
+
+inputbar {
+	children: [ prompt, entry ];
+	background-color: @button;
+	text-color: @fg;
+	expand: false;
+	border-radius: 0px;
+}
+
+listview {
+	columns: 1;
+	lines: 12;
+	cycle: false;
+	dynamic: true;
+	layout: vertical;
+}
+
+mainbox {
+	children: [ inputbar, listview ];
+	spacing: 0%;
+	padding: 2px 0px 2px 0px;
+}
+
+element {
+	orientation: vertical;
+	border-radius: 0%;
+	padding: 0% 0% 0% 0%;
+}
+
+element-text {
+	expand: true;
+	vertical-align: 0.5;
+	margin: 0% 0% 0% 0%;
+	padding: 2px 2px 2px 10px;
+	background-color: inherit;
+    text-color: inherit;
+}
+
+element selected {
+	background-color: @button;
+	text-color: @fg;
+	border-radius: 0px;
+}
