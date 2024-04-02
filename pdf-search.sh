@@ -32,7 +32,8 @@ if [ -n "$selected_dir" ]; then
 	# Check if a search term was provided
 	if [ -n "$search_term" ]; then
 
-		pdf_files=$(pdfgrep -i -l -P $search_term ${full_path}/*.pdf)
+		#pdf_files=$(pdfgrep -i -l -P $search_term ${full_path}/*.pdf)
+		pdf_files=$(pdfgrep -i -l -P --null $search_term ${full_path}/*.pdf | xargs -0 -n1 basename)
 
 		# Check if any PDF file containing the search term is found
 		if [ -z "$pdf_files" ]; then
@@ -41,6 +42,7 @@ if [ -n "$selected_dir" ]; then
 		fi
 
 		selected_file=$(echo "$pdf_files" | rofi rofi -config ${include_path}/rofi-conf.rasi -dmenu -i -p "Select a PDF file:")
+		selected_file=$full_path/$selected_file
 
 		# Check if the selected file does not exist
 		if [ ! -f "$selected_file" ]; then
