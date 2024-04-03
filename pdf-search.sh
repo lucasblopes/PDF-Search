@@ -27,7 +27,7 @@ if [ -n "$selected_dir" ]; then
 	mkdir -p $search_history
 
 	# Prompt the user to enter a search term
-	search_term=$(ls -t "${search_history}" | rofi -config ${include_path}/rofi-conf.rasi -dmenu -i -p "Enter a search term:" | tr '[:upper:]' '[:lower:]')
+	search_term=$(ls -tpF "${search_history}" | grep -v '/' | rofi -config "${include_path}/rofi-conf.rasi" -dmenu -i -p "Enter a search term:" | tr '[:upper:]' '[:lower:]')
 
 	# Check if a search term was provided
 	if [ -n "$search_term" ]; then
